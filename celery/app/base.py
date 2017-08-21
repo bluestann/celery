@@ -388,7 +388,7 @@ class Celery(object):
             connect_timeout=self.either(
                 'BROKER_CONNECTION_TIMEOUT', connect_timeout
             ),
-            **kwargs=self.kwargs,   # kwargs for cherami transport
+            **self.kwargs,   # kwargs for cherami transport
         )
     broker_connection = connection
 
