@@ -559,8 +559,10 @@ class Task(object):
         if self.__self__ is not None:
             args = args if isinstance(args, tuple) else tuple(args or ())
             args = (self.__self__, ) + args
+        # connection is for cherami transport publisher
         return app.send_task(
-            self.name, args, kwargs, task_id=task_id, producer=producer,
+            self.name, args, kwargs, task_id=task_id,
+            producer=producer, connection=app.connection(),
             link=link, link_error=link_error, result_cls=self.AsyncResult,
             **dict(self._get_exec_options(), **options)
         )
